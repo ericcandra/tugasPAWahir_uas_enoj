@@ -31,10 +31,13 @@ const index = (req, res) => {
 const about = (req, res) => {
   res.render("about", { title: "About", layout: "main" });
 };
+const contact = (req, res) => {
+  res.render("contact", { title: "Contact Us!", layout: "main" });
+};
 
 const use =
   ("/",
   (req, res) => {
     res.send("<h1>404 Not Found</h1>");
   });
-module.exports = { index, use, about };
+module.exports = { index, use, about,contact };
