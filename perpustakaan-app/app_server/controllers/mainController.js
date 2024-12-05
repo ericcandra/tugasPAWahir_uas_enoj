@@ -1,28 +1,35 @@
 const index = (req, res) => {
   const perpus = [
     {
-      judul: "Pemrograman Aplikasi Web 1",
+      
+      judul: "Pengembangan Aplikasi Web 1",
       isi: "berisi tentang pembuatan aplikasi berbasis web",
+      gambar: "img/buku1.jpg"
     },
     {
-      judul: "Pemrograman Aplikasi Web 2",
+      judul: "Pengembangan Aplikasi Web 2",
       isi: "berisi tentang pembuatan aplikasi berbasis web",
+      gambar: "img/buku2.jpg"
     },
     {
-      judul: "Pemrograman Aplikasi Bergerak 1",
+      judul: "Pengembangan Aplikasi Bergerak 1",
       isi: "berisi tentang pembuatan aplikasi berbasis mobile",
+      gambar: "img/buku3.jpg"
     },
     {
-      judul: "Pemrograman Aplikasi Bergerak 2",
+      judul: "Pengembangan Aplikasi Bergerak 2",
       isi: "berisi tentang pembuatan aplikasi berbasis mobile",
+      gambar: "img/buku4.jpg"
     },
     {
-      judul: "Peracangan Aplikasi",
-      isi: "berisi tentang bagaimana merancang sebuah aplikasi",
+      judul: "Peracangan Basis Data",
+      isi: "berisi tentang bagaimana merancang sebuah data",
+      gambar: "img/buku5.jpg"
     },
     {
-      judul: "Analisis",
-      isi: "berisi tentang bagaimana mencari sebuah ide",
+      judul: "Analisis sistem informasi",
+      isi: "berisi tentang bagaimana menganalisi sistem informasi",
+      gambar: "img/buku6.jpg"
     },
   ];
   res.render("home", { title: "halaman home", perpus, layout: "main" });
