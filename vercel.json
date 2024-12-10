@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "public-api",
+    "name": "perpustakaan-app",
     "builds": [
        { "src": "app.js", "use": "@vercel/node" }
     ],
