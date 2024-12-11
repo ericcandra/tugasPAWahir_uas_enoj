@@ -32,7 +32,7 @@ const index = (req, res) => {
       gambar: "img/buku6.jpg"
     },
   ];
-  res.render("home", { title: "halaman home", perpus, layout: "main" });
+  res.render("/", { title: "halaman home", perpus, layout: "main" });
 };
 
 const about = (req, res) => {
