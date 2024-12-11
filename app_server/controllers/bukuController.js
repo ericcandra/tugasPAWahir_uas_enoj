@@ -4,7 +4,7 @@ const index = async (req, res) => {
     try {
         // mendapatkan data buku dari API eksternal
         const response = await axios.get(
-            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku"
+            "http://localhost:3000/api/buku"
         );
 
         const buku = response.data;
@@ -24,7 +24,7 @@ const store = async (req, res) => {
     const { nama, penulis, tahun, jenis } = req.body;
     try {
       const response = await fetch(
-            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku",
+            "http://localhost:3000/api/buku",
         {
           method: "POST",
           headers: {

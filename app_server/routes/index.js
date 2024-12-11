@@ -15,4 +15,5 @@ router.get("/about", mainController.about);
 
 // router.get('/contact', mainController.contact);
 router.get("/contact", mainController.contact);
+
 module.exports = router;
