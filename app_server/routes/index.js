@@ -5,9 +5,9 @@ var router = express.Router();
 const mainController = require("../controllers/mainController");
 
 //route
-router.get("/", mainController.use);
+// router.get("/", mainController.use);
 
-router.get("/home", mainController.index);
+router.get("/", mainController.index);
 
 // router.get('/about', mainController.about);
 router.get("/about", mainController.about);
