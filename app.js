@@ -7,9 +7,10 @@ const expressLayout = require("express-ejs-layouts");
 const cors = require("cors");
 
 
+
 const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
-// const bukuRouter = require('./app_server/routes/buku');
+const bukuRouter = require('./app_server/routes/buku');
 
 var app = express();
 
@@ -27,7 +28,7 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/buku',bukuRouter);
+app.use('/buku', bukuRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

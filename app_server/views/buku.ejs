@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid salmon;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<h1>Buku</h1>
+<form action="/buku/store" method="POST">
+    <div class="mb-3">
+      <label for="nama" class="form-label">Nama Buku</label>
+      <input type="text" class="form-control" id="nama" name="nama" required />
+    </div>
+    <div class="mb-3">
+      <label for="penulis" class="form-label">Penulis</label>
+      <input
+        type="text"
+        class="form-control"
+        id="penulis"
+        name="penulis"
+        required
+      />
+    </div>
+    <div class="mb-3">
+        <label for="tahun" class="form-label">Tahun</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tahun"
+          name="tahun"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="jenis" class="form-label">Jenis</label>
+        <input
+          type="text"
+          class="form-control"
+          id="jenis"
+          name="jenis"
+          required
+        />
+      </div>
+    <button type="submit" class="btn btn-primary">Tambah Buku</button>
+  </form>
+  
+<table class="table table-striped">
+    <tr>
+        <th>Buku</th>
+        <th>Penulis</th>
+        <th>Tahun</th>
+        <th>Jenis</th>
+    </tr>
+    <% buku.forEach(data => {%>
+    <tr>
+        <td><%= data.nama %></td>
+        <td><%= data.penulis %></td>
+        <td><%= data.tahun %></td>
+        <td><%= data.jenis %></td>
+    </tr>
+    <% }) %>
+</table>
