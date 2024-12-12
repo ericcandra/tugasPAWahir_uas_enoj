@@ -48,13 +48,12 @@
       </div>
     <div class="mb-3">
         <label for="buku_id" class="form-label">Id Buku</label>
-        <input
-          type="text"
-          class="form-control"
-          id="buku_id"
-          name="buku_id"
-          required
-        />
+        <select class="form-control" id="buku_id" name="buku_id" required>
+          <option value="">-- Pilih Buku --</option>
+          <% bukuList.forEach(buku => { %>
+              <option value="<%= buku._id %>"><%= buku.nama %></option>
+          <% }) %>
+      </select>
       </div>
       
     <button type="submit" class="btn btn-primary">Tambah Pinjam</button>

@@ -6,12 +6,17 @@ const index = async (req, res) => {
         const response = await axios.get(
             "https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman"
         );
+        // Mendapatkan data buku dari API eksternal
+        const bukuResponse = await axios.get(
+          "https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku"
+        );
 
         const peminjaman = response.data;
+        const bukuList = bukuResponse.data;
 
         res.render("peminjaman", {
             title: "Halaman Peminjaman",
-            peminjaman,
+            peminjaman, bukuList,
             layout: "main",
         });
     } catch (error) {
