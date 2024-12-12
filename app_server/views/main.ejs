@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<style>
-  body::-webkit-scrollbar {
-    display: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-</style>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,23 +14,31 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <style>
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
   </head>
   <body>
-    <nav class="bg-blue-500 text-white shadow-md sticky-top">
-      <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
+    <nav class="bg-blue-500 text-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <img
             src="img/logo_perpus.png"
             alt="Logo Perpustakaan"
             class="h-12 rounded-full"
           />
-          <a class="text-xl font-bold text-gray-800" href="/home"
-            >Perpustakaan Digital ENOJ</a
-          >
+          <a class="text-xl font-bold text-gray-800" href="/home">Perpustakaan Digital ENOJ</a>
         </div>
-        <button class="block lg:hidden text-gray-800 focus:outline-none">
+        <button
+          id="menu-button"
+          class="block lg:hidden text-gray-800 focus:outline-none"
+        >
           <svg
             class="w-6 h-6"
             fill="none"
@@ -53,34 +54,33 @@
             ></path>
           </svg>
         </button>
-        <div class="hidden lg:flex space-x-4">
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/home"
-            >Home</a
-          >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/about"
-            >About</a
-          >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/contact"
-            >Contact</a
-          >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/buku"
-            >Buku</a
-          >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/peminjaman"
-            >Peminjaman</a
-          >
+        <div id="menu" class="hidden lg:flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/home">Home</a>
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/about">About</a>
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/contact">Contact</a>
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/buku">Buku</a>
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/peminjaman">Peminjaman</a>
         </div>
       </div>
     </nav>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll(".nav-link");
+        const menuButton = document.getElementById("menu-button");
+        const menu = document.getElementById("menu");
 
+        // Highlight the current page
         navLinks.forEach((link) => {
           if (link.getAttribute("href") === currentPath) {
             link.classList.add("font-semibold");
           }
+        });
+
+        // Toggle menu visibility on mobile
+        menuButton.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
         });
       });
     </script>
