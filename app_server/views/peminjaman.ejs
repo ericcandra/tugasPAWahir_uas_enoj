@@ -23,16 +23,16 @@
 <h1>Peminjaman Buku</h1>
 <form action="/peminjaman/store" method="POST">
     <div class="mb-3">
-      <label for="Tanggal" class="form-label">Tanggal Pinjam</label>
-      <input type="text" class="form-control" id="Tanggal" name="Tanggal" required />
+      <label for="tanggalPinjam" class="form-label">Tanggal Pinjam</label>
+      <input type="date" class="form-control" id="tanggalPinjam" name="tanggalPinjam" required />
     </div>
     <div class="mb-3">
-      <label for="Tanggal" class="form-label">Tanggal Kembali</label>
+      <label for="tanggalKembali" class="form-label">Tanggal Kembali</label>
       <input
-        type="text"
+        type="date"
         class="form-control"
-        id="Tanggal"
-        name="Tanggal"
+        id="tanggalKembali"
+        name="tanggalKembali"
         required
       />
     </div>
