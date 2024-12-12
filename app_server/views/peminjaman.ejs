@@ -23,11 +23,11 @@
 <h1>Peminjaman Buku</h1>
 <form action="/peminjaman/store" method="POST">
     <div class="mb-3">
-      <label for="tanggalPinjam" class="form-label">Tanggal Pinjam</label>
+      <label for="tanggalPinjam" class="form-label">Tanggal Pinjaman</label>
       <input type="date" class="form-control" id="tanggalPinjam" name="tanggalPinjam" required />
     </div>
     <div class="mb-3">
-      <label for="tanggalKembali" class="form-label">Tanggal Kembali</label>
+      <label for="tanggalKembali" class="form-label">Tanggal Kembalian</label>
       <input
         type="date"
         class="form-control"
@@ -47,7 +47,7 @@
         />
       </div>
     <div class="mb-3">
-        <label for="buku_id" class="form-label">Id Buku</label>
+        <label for="buku_id" class="form-label">Buku</label>
         <select class="form-control" id="buku_id" name="buku_id" required>
           <option value="">-- Pilih Buku --</option>
           <% bukuList.forEach(buku => { %>
