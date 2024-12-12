@@ -12,7 +12,7 @@ const index = async (req, res) => {
 
         res.render("peminjaman", {
             title: "Halaman Peminjaman",
-            buku,
+            peminjaman,
             layout: "main",
         });
     }catch (error)  {
