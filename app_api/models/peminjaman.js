@@ -6,12 +6,12 @@ const mongoose = require("mongoose");
 const peminjamanSchema = new mongoose.Schema({
     // field untuk nama buku
     tanggalPinjam: {
-        type: Date,
+        type: String,
         required: true,
         trim: true,
     },
     tanggalKembali: {
-        type: Date,
+        type: String,
         required: true,
         trim: true,
     },
