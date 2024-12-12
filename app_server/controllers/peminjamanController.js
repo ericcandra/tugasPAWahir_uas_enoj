@@ -4,7 +4,7 @@ const index = async (req, res) => {
     try {
         // mendapatkan data buku dari API eksternal
         const response = await axios.get(
-            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjamen"
+            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman"
             // cloud mongodb peminjaman
         );
 
@@ -25,7 +25,7 @@ const store = async (req, res) => {
     const { tanggalPinjam, tanggalKembali, batasPinjam, buku_id } = req.body;
     try {
       const response = await fetch(
-            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjamen",
+            "https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman",
         {
           method: "POST",
           headers: {
