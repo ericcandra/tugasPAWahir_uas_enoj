@@ -8,7 +8,7 @@ const index = async (req, res) => {
             // cloud mongodb peminjaman
         );
 
-        const peminjaman = response.data;
+        // const peminjaman = response.data;
 
         res.render("peminjaman", {
             title: "Halaman Peminjaman",
