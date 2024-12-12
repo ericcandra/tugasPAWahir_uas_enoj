@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid salmon;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<h1>Peminjaman</h1>
+<form action="/peminjaman/store" method="POST">
+    <div class="mb-3">
+      <label for="Tanggal" class="form-label">Tanggal Pinjam</label>
+      <input type="date" class="form-control" id="Tanggal" name="Tanggal" required />
+    </div>
+    <div class="mb-3">
+      <label for="Tanggal" class="form-label">Tanggal Kembali</label>
+      <input
+        type="date"
+        class="form-control"
+        id="Tanggal"
+        name="Tanggal"
+        required
+      />
+    </div>
+    <div class="mb-3">
+        <label for="batasPinjam" class="form-label">Batas Pinjam</label>
+        <input
+          type="text"
+          class="form-control"
+          id="batasPinjam"
+          name="batasPinjam"
+          required
+        />
+      </div>
+    <div class="mb-3">
+        <label for="buku" class="form-label">Buku</label>
+        <input
+          type="text"
+          class="form-control"
+          id="buku_id"
+          name="buku_id"
+          required
+        />
+      </div>
+      
+    <button type="submit" class="btn btn-primary">Tambah Pinjam</button>
+  </form>
+  
+<table class="table table-striped">
+    <tr>
+        <th>Tanggal Pinjam</th>
+        <th>Tanggal Kembalian</th>
+        <th>Batas Pinjam</th>
+        <th>Nama Buku</th>
+    </tr>
+    <% peminjaman.forEach(data => {%>
+    <tr>
+        <td><%= data.tanggalPinjam %></td>
+        <td><%= data.tanggalKembali %></td>
+        <td><%= data.batasPinjam %></td>
+        <td><%= data.buku_id && data.buku_id.nama ? data.buku_id.nama : 'belum ada buku' %></td>
+    </tr>
+    <% }) %>
+</table>

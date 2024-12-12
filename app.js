@@ -11,8 +11,10 @@ const connectDB = require("./app_api/models/db");
 const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
 const bukuRouter = require('./app_server/routes/buku');
+const peminjamanRouter = require('./app_server/routes/peminjaman');
 
 const bukuRouterApi = require("./app_api/routes/buku");
+const peminjamanRouterApi = require("./app_api/routes/peminjaman");
 
 var app = express();
 
@@ -31,8 +33,10 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/buku', bukuRouter);
+app.use('/peminjaman', peminjamanRouter);
 
 app.use("/api/buku", bukuRouterApi);
+app.use("/api/peminjaman", peminjamanRouterApi);
 
 
 connectDB();
