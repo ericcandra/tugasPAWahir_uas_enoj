@@ -38,7 +38,7 @@ app.use('/peminjaman', peminjamanRouter);
 
 app.use("/api/buku", bukuRouterApi);
 app.use("/api/peminjaman", peminjamanRouterApi);
-app.use("/api/anggotas", anggotaRouterApi);
+app.use("/api/anggota", anggotaRouterApi);
 
 
 
