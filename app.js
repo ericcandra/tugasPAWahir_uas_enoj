@@ -15,6 +15,7 @@ const peminjamanRouter = require('./app_server/routes/peminjaman');
 
 const bukuRouterApi = require("./app_api/routes/buku");
 const peminjamanRouterApi = require("./app_api/routes/peminjaman");
+const anggotaRouterApi = require("./app_api/routes/anggota");
 
 var app = express();
 
@@ -37,6 +38,8 @@ app.use('/peminjaman', peminjamanRouter);
 
 app.use("/api/buku", bukuRouterApi);
 app.use("/api/peminjaman", peminjamanRouterApi);
+app.use("/api/anggota", anggotaRouterApi);
+
 
 
 connectDB();
