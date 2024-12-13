@@ -13,7 +13,7 @@ const anggotaSchema = new mongoose.Schema({
     npm: {
         type: String,
         required: true,
-        trim: true,
+        unique: true,
     },
     // field untuk buku
     buku_id: {
