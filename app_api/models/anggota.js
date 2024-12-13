@@ -22,12 +22,11 @@ const anggotaSchema = new mongoose.Schema({
         required: true,
     },
     // field untuk menyimpan tanggal pembuatan data fakultas
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    
 
-});
+},
+{ timestamps: true}
+);
 
 // buat modul fakultas dari skema yang telah didefinisikan
 const Anggota = mongoose.model("Anggota", anggotaSchema);
