@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid rgb(28, 30, 29);
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: rgb(54, 91, 147);
+        }
+    </style>
+</head>
+<h1>Denda</h1>
+<form action="/denda/store" method="POST">
+    <div class="mb-3">
+      <label for="jumlahPinjam" class="form-label">Jumlah Pinjam Buku</label>
+      <input type="text" class="form-control" id="jumlahPinjam" name="jumlahPinjam" required />
+    </div>
+    <div class="mb-3">
+        <label for="buku_id" class="form-label">Buku</label>
+        <select class="form-control" id="buku_id" name="buku_id" required>
+          <option value="">-- Pilih Buku --</option>
+          <% bukuList.forEach(buku => { %>
+              <option value="<%= buku._id %>"><%= buku.nama %></option>
+          <% }) %>
+      </select>
+    </div>
+    <div class="mb-3">
+        <label for="anggota_id" class="form-label">Anggota</label>
+        <select class="form-control" id="anggota_id" name="anggota_id" required>
+          <option value="">-- Daftar Anggota --</option>
+          <% anggotaList.forEach(anggota => { %>
+              <option value="<%= anggota._id %>"><%= anggota.nama %></option>
+          <% }) %>
+      </select>
+    </div>
+    <div class="mb-3">
+        <label for="harga" class="form-label">Harga</label>
+        <input
+          type="text"
+          class="form-control"
+          id="harga"
+          name="harga"
+          required
+        />
+    </div>
+      
+    <button type="submit" class="btn btn-primary">Tambah Denda</button>
+  </form>
+  
+<table class="table table-striped">
+    <tr>
+        <th>Jumlah Pinjam Buku</th>
+        <th>Nama Buku</th>
+        <th>Nama Anggota</th>
+        <th>Harga</th>
+    </tr>
+    <% denda.forEach(data => {%>
+    <tr>
+        <td><%= data.jumlahPinjam %></td>
+        <td><%= data.buku_id && data.buku_id.nama ? data.buku_id.nama : 'belum ada buku' %></td>
+        <td><%= data.anggota_id && data.anggota_id.nama ? data.anggota_id.nama : 'belum ada anggota' %></td>
+        <td><%= data.harga %></td>
+    </tr>
+    <% }) %>
+</table>

@@ -12,6 +12,9 @@ const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
 const bukuRouter = require('./app_server/routes/buku');
 const peminjamanRouter = require('./app_server/routes/peminjaman');
+const anggotaRouter = require('./app_server/routes/anggota');
+const dendaRouter = require('./app_server/routes/denda');
+const pengembalianRouter = require('./app_server/routes/pengembalian');
 
 const authRouterApi = require("./app_api/routes/auth");
 const bukuRouterApi = require("./app_api/routes/buku");
@@ -41,6 +44,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/buku', bukuRouter);
 app.use('/peminjaman', peminjamanRouter);
+app.use('/anggota', anggotaRouter);
+app.use('/denda', dendaRouter);
+app.use('/pengembalian', pengembalianRouter);
 
 app.use("/api/auth", authRouterApi);
 app.use("/api/buku", bukuRouterApi);

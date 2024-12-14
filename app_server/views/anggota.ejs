@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid rgb(28, 30, 29);
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: rgb(54, 91, 147);
+        }
+    </style>
+</head>
+<h1>Daftar Anggota</h1>
+<form action="/anggota/store" method="POST">
+    <div class="mb-3">
+      <label for="nama" class="form-label">Nama Anggota</label>
+      <input type="text" class="form-control" id="nama" name="nama" required />
+    </div>
+    <div class="mb-3">
+      <label for="npm" class="form-label">Npm</label>
+      <input
+        type="text"
+        class="form-control"
+        id="npm"
+        name="npm"
+        required
+      />
+    </div>
+    <div class="mb-3">
+        <label for="buku_id" class="form-label">Buku</label>
+        <select class="form-control" id="buku_id" name="buku_id" required>
+          <option value="">-- Pilih Buku --</option>
+          <% bukuList.forEach(buku => { %>
+              <option value="<%= buku._id %>"><%= buku.nama %></option>
+          <% }) %>
+      </select>
+      </div>
+      
+    <button type="submit" class="btn btn-primary">Tambah Anggota</button>
+  </form>
+  
+<table class="table table-striped">
+    <tr>
+        <th>Nama Anggota</th>
+        <th>Npm</th>
+        <th>Nama Buku</th>
+    </tr>
+    <% anggota.forEach(data => {%>
+    <tr>
+        <td><%= data.nama %></td>
+        <td><%= data.npm %></td>
+        <td><%= data.buku_id && data.buku_id.nama ? data.buku_id.nama : 'belum ada buku' %></td>
+    </tr>
+    <% }) %>
+</table>
