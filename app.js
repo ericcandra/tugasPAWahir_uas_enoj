@@ -18,6 +18,7 @@ const bukuRouterApi = require("./app_api/routes/buku");
 const peminjamanRouterApi = require("./app_api/routes/peminjaman");
 const anggotaRouterApi = require("./app_api/routes/anggota");
 const dendaRouterApi = require("./app_api/routes/denda");
+const pengembalianRouterApi = require("./app_api/routes/pengembalian");
 
 require("dotenv").config();
 
@@ -46,6 +47,7 @@ app.use("/api/buku", bukuRouterApi);
 app.use("/api/peminjaman", peminjamanRouterApi);
 app.use("/api/anggota", anggotaRouterApi);
 app.use("/api/denda", dendaRouterApi);
+app.use("/api/pengembalian", pengembalianRouterApi);
 
 
 

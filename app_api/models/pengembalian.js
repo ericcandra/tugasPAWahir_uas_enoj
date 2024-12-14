@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 // definisakn schema untuk fakultas
-const riwayatSchema = new mongoose.Schema({
+const pengembalianSchema = new mongoose.Schema({
     // field untuk nama buku
     // : {
     //     type: String,
@@ -34,6 +34,6 @@ const riwayatSchema = new mongoose.Schema({
 );
 
 // buat modul fakultas dari skema yang telah didefinisikan
-const Riwayat = mongoose.model("Riwayat", riwayatSchema);
+const Pengembalian = mongoose.model("Pengembalian", pengembalianSchema);
 
-module.exports = Riwayat;
+module.exports = Pengembalian;

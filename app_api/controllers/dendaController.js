@@ -14,8 +14,8 @@ exports.createDenda = async (req, res) => {
     // }
     try {
       const buku = await Buku.findById(buku_id); // Mencari Prodi berdasarkan ID
-      const anggota = await Anggota.findById(anggota_id);
       if (!buku) return res.status(404).json({ message: "Buku not found" });
+      const anggota = await Anggota.findById(anggota_id);
       if (!anggota) return res.status(404).json({ message: "Anggota not found" }); // Jika Prodi tidak ditemukan
   
       // Membuat instance Mahasiswa baru
