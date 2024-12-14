@@ -10,7 +10,7 @@ const anggotaController = require("../controllers/anggotaController");
 // const authMiddleware = require("../middleware/authMiddleware");
 // const roleMiddleware = require("../middleware/roleMiddleware");
 
-// Definisi rute untuk fakultas
+// Definisi rute untuk anggota
 // Mengatur rute GET untuk mendapatkan semua data fakultas
 router.get("/", anggotaController.getAllAnggota);
 // Mengatur rute POST untuk membuat data fakultas baru
