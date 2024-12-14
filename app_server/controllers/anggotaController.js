@@ -12,12 +12,12 @@ const index = async (req, res) => {
         // Mendapatkan data buku dari API eksternal
         
 
-        const angota = response.data;
+        const anggota = response.data;
         const bukuList = bukuResponse.data;
 
         res.render("anggota", {
             title: "Halaman Anggota",
-            angota, bukuList,
+            anggota, bukuList,
             layout: "main",
         });
     } catch (error) {
