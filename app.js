@@ -13,9 +13,14 @@ const usersRouter = require('./app_server/routes/users');
 const bukuRouter = require('./app_server/routes/buku');
 const peminjamanRouter = require('./app_server/routes/peminjaman');
 
+const authRouterApi = require("./app_api/routes/auth");
 const bukuRouterApi = require("./app_api/routes/buku");
 const peminjamanRouterApi = require("./app_api/routes/peminjaman");
 const anggotaRouterApi = require("./app_api/routes/anggota");
+const dendaRouterApi = require("./app_api/routes/denda");
+
+require("dotenv").config();
+
 
 var app = express();
 
@@ -36,9 +41,11 @@ app.use('/users', usersRouter);
 app.use('/buku', bukuRouter);
 app.use('/peminjaman', peminjamanRouter);
 
+app.use("/api/auth", authRouterApi);
 app.use("/api/buku", bukuRouterApi);
 app.use("/api/peminjaman", peminjamanRouterApi);
 app.use("/api/anggota", anggotaRouterApi);
+app.use("/api/denda", dendaRouterApi);
 
 
 
