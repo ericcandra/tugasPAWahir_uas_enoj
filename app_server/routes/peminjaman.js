@@ -9,5 +9,6 @@ router.post("/store", peminjamanController.store);
 
 router.post("/update", peminjamanController.update);
 
+router.get("/delete/:id", peminjamanController.deletePeminjaman);
 
 module.exports = router;

@@ -64,7 +64,25 @@ const update = async (req, res) => {
     }
 };
 
-module.exports = { index, store, update };
+const deletePeminjaman = async (req, res) => {
+    const { id } = req.params; // Mendapatkan ID dari parameter URL
+    try {
+        const response = await axios.delete(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman/${id}`
+        );
+
+        if (response.status === 200) {
+            res.redirect("/peminjaman"); // Redirect ke halaman utama setelah berhasil menghapus
+        } else {
+            res.status(500).send("Gagal menghapus peminjaman.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error menghapus peminjaman.");
+    }
+};
+
+module.exports = { index, store, update, deletePeminjaman };
 
 
 
