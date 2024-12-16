@@ -70,5 +70,23 @@ const store = async (req, res) => {
     }
 };
 
+const deleteBuku = async (req, res) => {
+    const { id } = req.params; // Mendapatkan ID dari parameter URL
+    try {
+        const response = await axios.delete(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku/${id}`
+        );
 
-module.exports = { index, store, update};
+        if (response.status === 200) {
+            res.redirect("/buku"); // Redirect ke halaman utama setelah berhasil menghapus
+        } else {
+            res.status(500).send("Gagal menghapus buku.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error menghapus buku.");
+    }
+};
+
+
+module.exports = { index, store, update, deleteBuku};

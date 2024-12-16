@@ -97,9 +97,22 @@
                 background-color: #0056b3;
             }
         </style>
-        
             <!-- Tombol untuk menampilkan form ubah -->
             <button onclick="showUpdateForm('<%= data._id %>')" class="btn btn-edit">Ubah</button>
+
+            <style>
+              .btn-danger {
+                  background-color: #dc3545;
+                  color: white;
+              }
+          
+              .btn-danger:hover {
+                  opacity: 0.9;
+              }
+          </style>
+          
+            <!-- Tombol untuk hapus buku -->
+            <button onclick="confirmDelete('<%= data._id %>', '<%= data.nama %>')" class="btn btn-danger">Hapus</button>
         </td>
     </tr>
 
@@ -153,6 +166,17 @@
           document.getElementById(`form-${id}`).style.display = "none";
       }
   </script>
+
+<script>
+  function confirmDelete(id, nama) {
+      const confirmed = confirm(`Apakah Anda yakin ingin menghapus buku "${nama}"?`);
+      if (confirmed) {
+          // Redirect ke endpoint hapus buku
+          window.location.href = `/buku/delete/${id}`;
+      }
+  }
+</script>
+
   
     <!-- Form Update Buku -->
     <tr id="form-<%= data._id %>" style="display: none;">

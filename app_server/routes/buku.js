@@ -9,4 +9,6 @@ router.post("/store", bukuController.store);
 
 router.post("/update/:id", bukuController.update);
 
+router.get("/delete/:id", bukuController.deleteBuku);
+
 module.exports = router;
