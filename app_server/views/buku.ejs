@@ -97,7 +97,7 @@
                 background-color: #0056b3; /* Warna biru tua saat hover */
             }
         </style>        
-          <form action="/buku/update/<%= data._id %>" method="PUT" style="display: inline;">
+          <form action="/buku/update/<%= data._id %>" method="POST" style="display: inline;">
             <input type="hidden" name="nama" value="<%= data.nama %>" />
             <input type="hidden" name="penulis" value="<%= data.penulis %>" />
             <input type="hidden" name="tahun" value="<%= data.tahun %>" />
