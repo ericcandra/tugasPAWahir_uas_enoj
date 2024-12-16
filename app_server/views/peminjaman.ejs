@@ -203,7 +203,8 @@
     <!-- Form Update Buku -->
     <tr id="form-<%= data._id %>" style="display: none;">
       <td colspan="5">
-          <form action="/peminjaman/update/<%= data._id %>" method="POST">
+          <form action="/peminjaman/update" method="POST">
+            <input type="hidden" name="id" value="<%= data._id %>">
               <div>
                   <label for="tanggalPinjam<%= data._id %>">Tanggal Pinjam:</label>
                   <input type="text" id="tanggalPinjam<%= data._id %>" name="tanggalPinjam" value="<%= data.tanggalPinjam %>" required>
@@ -218,10 +219,10 @@
               </div>
               <div>
                 <label for="buku_id<%= data._id %>">Buku</label>
-                <select class="form-control" id="buku_id<%= data._id %>" name="buku_id" required>
+                <select id="buku_id<%= data._id %>" name="buku_id" required>
                     <option value="">-- Pilih Buku --</option>
                     <% bukuList.forEach(buku => { %>
-                        <option value="<%= buku._id %>" <%= buku._id === data.buku_id?._id ? 'selected' : '' %>>
+                        <option value="<%= buku._id %>" <%= buku._id === (data.buku_id ? data.buku_id._id : '') ? 'selected' : '' %>>
                             <%= buku.nama %>
                         </option>
                     <% }) %>
