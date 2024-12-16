@@ -217,7 +217,8 @@
                   <input type="text" id="batasPinjam<%= data._id %>" name="batasPinjam" value="<%= data.batasPinjam %>" required>
               </div>
               <div class="mb-3">
-                <label for="buku_id" class="form-label">Buku</label>
+                <label for="buku_id<% data._id %>">Buku</label>
+                <input type="text" id="buku_id<%= data._id %>" name="buku_id" value="<%= data.buku_id.nama %>" required>
                 <select class="form-control" id="buku_id" name="buku_id" required>
                     <option value="">-- Pilih Buku --</option>
                     <% bukuList.forEach(buku => { %>
