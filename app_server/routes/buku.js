@@ -7,7 +7,6 @@ router.get("/", bukuController.index);
 
 router.post("/store", bukuController.store);
 
-router.post("/update", bukuController.update);
 
 
 module.exports = router;
