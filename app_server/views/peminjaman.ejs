@@ -65,6 +65,7 @@
         <th>Tanggal Kembalian</th>
         <th>Batas Pinjam</th>
         <th>Nama Buku</th>
+        <th>Aksi</th>
     </tr>
     <% peminjaman.forEach(data => {%>
     <tr>
@@ -72,6 +73,61 @@
         <td><%= data.tanggalKembali %></td>
         <td><%= data.batasPinjam %></td>
         <td><%= data.buku_id && data.buku_id.nama ? data.buku_id.nama : 'belum ada buku' %></td>
+        <td>
+          <!-- Tombol Ubah -->
+          <button onclick="showUpdateForm('<%= data._id %>')" class="btn btn-edit">Ubah</button>
+      </td>
+
+      <script>
+        function showUpdateForm(id) {
+            const peminjaman =  JSON.stringify(peminjaman); // Data peminjaman dari server
+            const data = peminjaman.find(item => item._id === id);
+    
+            if (data) {
+                // Isi form dengan data yang dipilih
+                document.getElementById("updateId").value = data._id;
+                document.getElementById("updateTanggalPinjam").value = data.tanggalPinjam;
+                document.getElementById("updateTanggalKembali").value = data.tanggalKembali;
+                document.getElementById("updateBatasPinjam").value = data.batasPinjam;
+                document.getElementById("updateBukuId").value = data.buku_id ? data.buku_id._id : "";
+    
+                // Tampilkan form
+                document.getElementById("updateFormContainer").style.display = "block";
+            }
+        }
+    </script>      
+
+      <div id="updateFormContainer" style="display: none; margin-top: 20px;">
+        <h2>Ubah Peminjaman</h2>
+        <form id="updateForm" action="/peminjaman/update" method="POST">
+            <input type="hidden" id="updateId" name="id" />
+            <div class="mb-3">
+                <label for="updateTanggalPinjam" class="form-label">Tanggal Pinjaman</label>
+                <input type="date" class="form-control" id="updateTanggalPinjam" name="tanggalPinjam" required />
+            </div>
+            <div class="mb-3">
+                <label for="updateTanggalKembali" class="form-label">Tanggal Kembalian</label>
+                <input type="date" class="form-control" id="updateTanggalKembali" name="tanggalKembali" required />
+            </div>
+            <div class="mb-3">
+                <label for="updateBatasPinjam" class="form-label">Batas Pinjam</label>
+                <input type="text" class="form-control" id="updateBatasPinjam" name="batasPinjam" required />
+            </div>
+            <div class="mb-3">
+                <label for="updateBukuId" class="form-label">Buku</label>
+                <select class="form-control" id="updateBukuId" name="buku_id" required>
+                    <option value="">-- Pilih Buku --</option>
+                    <% bukuList.forEach(buku => { %>
+                        <option value="<%= buku._id %>"><%= buku.nama %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </form>
+    </div>
+    
     </tr>
+    
+  
     <% }) %>
 </table>

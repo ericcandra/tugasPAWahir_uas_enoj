@@ -7,4 +7,7 @@ router.get("/", peminjamanController.index);
 
 router.post("/store", peminjamanController.store);
 
+router.post("/update", peminjamanController.update);
+
+
 module.exports = router;

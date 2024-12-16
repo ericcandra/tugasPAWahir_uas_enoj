@@ -44,7 +44,28 @@ const store = async (req, res) => {
     }
 };
 
-module.exports = { index, store };
+const update = async (req, res) => {
+    const { id, tanggalPinjam, tanggalKembali, batasPinjam, buku_id } = req.body;
+
+    try {
+        const response = await axios.put(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman/${id}`,
+            { tanggalPinjam, tanggalKembali, batasPinjam, buku_id }
+        );
+
+        if (response.status === 200) {
+            res.redirect("/peminjaman"); // Redirect ke halaman utama setelah berhasil diubah
+        } else {
+            res.status(500).send("Gagal memperbarui data peminjaman.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data peminjaman.");
+    }
+};
+
+module.exports = { index, store, update };
+
 
 
 // const axios = require("axios");
