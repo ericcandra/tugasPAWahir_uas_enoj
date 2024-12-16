@@ -45,4 +45,31 @@ const store = async (req, res) => {
     }
   };
 
-module.exports = {index, store};
+  const update = async (req, res) => {
+    const { id } = req.params; // ID buku dari URL
+    const { nama, penulis, tahun, jenis } = req.body; // Data yang akan diperbarui
+
+    try {
+        const response = await fetch(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku/${id}`, // API untuk update
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ nama, penulis, tahun, jenis }),
+            }
+        );
+
+        if (response.ok) {
+            res.redirect("/buku"); // Redirect setelah berhasil
+        } else {
+            res.status(500).send("Gagal memperbarui data buku.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data buku.");
+    }
+};
+
+module.exports = { index, store, update };

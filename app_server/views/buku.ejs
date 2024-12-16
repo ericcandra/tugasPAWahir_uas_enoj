@@ -61,6 +61,7 @@
       </div>
     <button type="submit" class="btn btn-primary">Tambah Buku</button>
   </form>
+
   
 <table class="table table-striped">
     <tr>
@@ -75,6 +76,15 @@
         <td><%= data.penulis %></td>
         <td><%= data.tahun %></td>
         <td><%= data.jenis %></td>
+        <td>
+          <form action="/buku/update/<%= data._id %>" method="POST" style="display: inline;">
+              <input type="hidden" name="nama" value="<%= data.nama %>" />
+              <input type="hidden" name="penulis" value="<%= data.penulis %>" />
+              <input type="hidden" name="tahun" value="<%= data.tahun %>" />
+              <input type="hidden" name="jenis" value="<%= data.jenis %>" />
+              <button type="submit">Ubah Buku</button>
+          </form>
+        </td>
     </tr>
     <% }) %>
 </table>
