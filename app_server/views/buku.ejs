@@ -61,8 +61,14 @@
       </div>
     <button type="submit" class="btn btn-primary">Tambah Buku</button>
   </form>
+  <form action="/buku/update/<%= data._id %>" method="POST" style="display: inline;">
+    <input type="hidden" name="nama" value="<%= data.nama %>" />
+    <input type="hidden" name="penulis" value="<%= data.penulis %>" />
+    <input type="hidden" name="tahun" value="<%= data.tahun %>" />
+    <input type="hidden" name="jenis" value="<%= data.jenis %>" />
+  </form>
 
-  
+
 <table class="table table-striped">
     <tr>
         <th>Buku</th>
@@ -97,13 +103,7 @@
                 background-color: #0056b3; /* Warna biru tua saat hover */
             }
         </style>        
-          <form action="/buku/update/<%= data._id %>" method="POST" style="display: inline;">
-            <input type="hidden" name="nama" value="<%= data.nama %>" />
-            <input type="hidden" name="penulis" value="<%= data.penulis %>" />
-            <input type="hidden" name="tahun" value="<%= data.tahun %>" />
-            <input type="hidden" name="jenis" value="<%= data.jenis %>" />
-            <button type="submit" class="btn btn-edit">Ubah Buku</button>
-        </form>
+        <button type="submit" class="btn btn-edit">Ubah Buku</button>
         </td>
     </tr>
     <% }) %>
