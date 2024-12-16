@@ -45,5 +45,30 @@ const store = async (req, res) => {
     }
   };
 
+  const update = async (req, res) => {
+    const { id } = req.params; // ID buku yang diterima dari URL
+    const { nama, penulis, tahun, jenis } = req.body;
 
-module.exports = { index, store, };
+    console.log("Data untuk update:", { id, nama, penulis, tahun, jenis });
+
+    try {
+        const response = await axios.put(`https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku/${id}`, {
+            nama,
+            penulis,
+            tahun,
+            jenis,
+        });
+
+        if (response.status === 200) {
+            res.redirect("/buku");
+        } else {
+            res.status(500).send("Gagal memperbarui data buku.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data buku");
+    }
+};
+
+
+module.exports = { index, store, update};

@@ -69,6 +69,7 @@
         <th>Penulis</th>
         <th>Tahun</th>
         <th>Jenis</th>
+        <th>Aksi</th>
     </tr>
     <% buku.forEach(data => {%>
     <tr>
@@ -76,7 +77,37 @@
         <td><%= data.penulis %></td>
         <td><%= data.tahun %></td>
         <td><%= data.jenis %></td>
+        <td>
+          <style>
+            .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
         
+            .btn-edit {
+                background-color: #007bff;
+                color: white;
+                transition: background-color 0.3s ease;
+            }
+        
+            .btn-edit:hover {
+                background-color: #0056b3;
+            }
+        </style>
+        
+          <!-- Tombol Ubah -->
+          <form action="/buku/update/<%= data._id %>" method="POST" style="display:inline;">
+              <input type="hidden" name="nama" value="<%= data.nama %>">
+              <input type="hidden" name="penulis" value="<%= data.penulis %>">
+              <input type="hidden" name="tahun" value="<%= data.tahun %>">
+              <input type="hidden" name="jenis" value="<%= data.jenis %>">
+              <button type="submit" class="btn btn-edit">Ubah</button>
+          </form>
+          
+      </td>
     </tr>
     <% }) %>
 </table>
