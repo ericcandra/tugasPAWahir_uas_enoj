@@ -49,7 +49,45 @@ const store = async (req, res) => {
     }
 };
 
-module.exports = { index, store };
+const update = async (req, res) => {
+    const { id, jumlahPinjam, buku_id, anggota_id, harga } = req.body;
+
+    try {
+        const response = await axios.put(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/denda/${id}`,
+            { jumlahPinjam, buku_id, anggota_id, harga }
+        );
+
+        if (response.status === 200) {
+            res.redirect("/denda"); // Redirect ke halaman utama setelah berhasil diubah
+        } else {
+            res.status(500).send("Gagal memperbarui data denda.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data denda.");
+    }
+};
+
+const deleteDenda = async (req, res) => {
+    const { id } = req.params; // Mendapatkan ID dari parameter URL
+    try {
+        const response = await axios.delete(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/denda/${id}`
+        );
+
+        if (response.status === 200) {
+            res.redirect("/denda"); // Redirect ke halaman utama setelah berhasil menghapus
+        } else {
+            res.status(500).send("Gagal menghapus denda.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error menghapus denda.");
+    }
+};
+
+module.exports = { index, store, update, deleteDenda };
 
 
 // const axios = require("axios");

@@ -65,6 +65,150 @@
         <td><%= data.buku_id && data.buku_id.nama ? data.buku_id.nama : 'belum ada buku' %></td>
         <td><%= data.anggota_id && data.anggota_id.nama ? data.anggota_id.nama : 'belum ada anggota' %></td>
         <td><%= data.denda_id && data.denda_id.jumlahPinjam ? data.denda_id.jumlahPinjam : 'belum ada denda' %></td>
+        <td>
+            <style>
+              .btn {
+                  padding: 8px 16px;
+                  font-size: 14px;
+                  border: none;
+                  border-radius: 4px;
+                  cursor: pointer;
+              }
+          
+              .btn-edit {
+                  background-color: #007bff;
+                  color: white;
+                  transition: background-color 0.3s ease;
+              }
+          
+              .btn-edit:hover {
+                  background-color: #0056b3;
+              }
+          </style>
+            <!-- Tombol Ubah -->
+            <button onclick="showUpdateForm('<%= data._id %>')" class="btn btn-edit">Ubah</button>
+  
+            <style>
+              .btn-danger {
+                  background-color: #dc3545;
+                  color: white;
+              }
+          
+              .btn-danger:hover {
+                  opacity: 0.9;
+              }
+          </style>
+          
+            <!-- Tombol untuk hapus buku -->
+            <button onclick="confirmDelete('<%= data._id %>', '<%= data.buku_id %>')" class="btn btn-danger">Hapus</button>
+        </td>
     </tr>
+    <style>
+        form {
+            margin: 10px 0;
+        }
+    
+        form div {
+            margin-bottom: 10px;
+        }
+    
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+    
+        input {
+            padding: 5px;
+            width: 200px;
+        }
+    
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+    
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+    
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>  
+
+      <script>
+        function showUpdateForm(id) {
+            document.getElementById(`form-${id}`).style.display = "table-row";
+        }
+    
+        function hideUpdateForm(id) {
+            document.getElementById(`form-${id}`).style.display = "none";
+        }
+    </script>
+
+<script>
+  function confirmDelete(id, buku_id) {
+      const confirmed = confirm(`Apakah Anda yakin ingin menghapus pengembalian "${buku_id}"?`);
+      if (confirmed) {
+          // Redirect ke endpoint hapus buku
+          window.location.href = `/pengembalian/delete/${id}`;
+      }
+  }
+</script>
+<!-- Form Update pengembalian -->
+<tr id="form-<%= data._id %>" style="display: none;">
+    <td colspan="5">
+        <form action="/pengembalian/update" method="POST">
+          <input type="hidden" name="id" value="<%= data._id %>">
+            <div>
+              <label for="buku_id<%= data._id %>">Nama Buku</label>
+              <select id="buku_id<%= data._id %>" name="buku_id" required>
+                  <option value="">-- Pilih Buku --</option>
+                  <% bukuList.forEach(buku => { %>
+                      <option value="<%= buku._id %>" <%= buku._id === (data.buku_id ? data.buku_id._id : '') ? 'selected' : '' %>>
+                          <%= buku.nama %>
+                      </option>
+                  <% }) %>
+              </select>
+            </div>
+            <div>
+                <label for="anggota_id<%= data._id %>">Nama Anggota</label>
+                <select id="anggota_id<%= data._id %>" name="anggota_id" required>
+                    <option value="">-- Pilih Anggota --</option>
+                    <% anggotaList.forEach(anggota => { %>
+                        <option value="<%= anggota._id %>" <%= anggota._id === (data.anggota_id ? data.anggota_id._id : '') ? 'selected' : '' %>>
+                            <%= anggota.nama %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                <label for="denda_id<%= data._id %>">Jumlah Pinjam</label>
+                <select id="denda_id<%= data._id %>" name="denda_id" required>
+                    <option value="">-- Pilih Jumlah Pinjam --</option>
+                    <% dendaList.forEach(denda => { %>
+                        <option value="<%= denda._id %>" <%= denda._id === (data.denda_id ? data.denda_id._id : '') ? 'selected' : '' %>>
+                            <%= denda.jumlahPinjam %>
+                        </option>
+                    <% }) %>
+                </select>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            <button type="button" onclick="hideUpdateForm('<%= data._id %>')" class="btn btn-secondary">Batal</button>
+        </form>
+        <!-- ada -->
+    </td>
+</tr>
+
+
     <% }) %>
 </table>

@@ -7,4 +7,8 @@ router.get("/", pengembalianController.index);
 
 router.post("/store", pengembalianController.store);
 
+router.post("/update", pengembalianController.update);
+
+router.get("/delete/:id", pengembalianController.deletePengembalian);
+
 module.exports = router;

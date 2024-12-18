@@ -45,7 +45,45 @@ const store = async (req, res) => {
     }
 };
 
-module.exports = { index, store };
+const update = async (req, res) => {
+    const { id, nama, npm, buku_id } = req.body;
+
+    try {
+        const response = await axios.put(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/anggota/${id}`,
+            { nama, npm, buku_id }
+        );
+
+        if (response.status === 200) {
+            res.redirect("/anggota"); // Redirect ke halaman utama setelah berhasil diubah
+        } else {
+            res.status(500).send("Gagal memperbarui data anggota.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data anggota.");
+    }
+};
+
+const deleteAnggota = async (req, res) => {
+    const { id } = req.params; // Mendapatkan ID dari parameter URL
+    try {
+        const response = await axios.delete(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/anggota/${id}`
+        );
+
+        if (response.status === 200) {
+            res.redirect("/anggota"); // Redirect ke halaman utama setelah berhasil menghapus
+        } else {
+            res.status(500).send("Gagal menghapus anggota.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error menghapus anggota.");
+    }
+};
+
+module.exports = { index, store, update, deleteAnggota };
 
 
 // const axios = require("axios");

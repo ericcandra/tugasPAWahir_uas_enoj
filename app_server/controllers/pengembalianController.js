@@ -53,7 +53,45 @@ const store = async (req, res) => {
     }
 };
 
-module.exports = { index, store };
+const update = async (req, res) => {
+    const { id, buku_id, anggota_id, denda_id } = req.body;
+
+    try {
+        const response = await axios.put(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/pengembalian/${id}`,
+            { buku_id, anggota_id, denda_id }
+        );
+
+        if (response.status === 200) {
+            res.redirect("/pengembalian"); // Redirect ke halaman utama setelah berhasil diubah
+        } else {
+            res.status(500).send("Gagal memperbarui data pengembalian.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error memperbarui data pengembalian.");
+    }
+};
+
+const deletePengembalian = async (req, res) => {
+    const { id } = req.params; // Mendapatkan ID dari parameter URL
+    try {
+        const response = await axios.delete(
+            `https://tugas-pa-wahir-uas-enoj.vercel.app/api/pengembalian/${id}`
+        );
+
+        if (response.status === 200) {
+            res.redirect("/pengembalian"); // Redirect ke halaman utama setelah berhasil menghapus
+        } else {
+            res.status(500).send("Gagal menghapus pengembalian.");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Error menghapus pengembalian.");
+    }
+};
+
+module.exports = { index, store, update, deletePengembalian };
 
 
 // const axios = require("axios");
