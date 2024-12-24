@@ -11,11 +11,11 @@ export class AuthGuard implements CanActivate {
     const token = localStorage.getItem('authToken');
 
     if (token) {
-      // Token ada, akses diizinkan
+      // Token exists, allow access
       return true;
     } else {
-      // Token tidak ada, arahkan ke halaman login
-      this.router.navigate(['/login']);
+      // Token does not exist, redirect to login
+      this.router.navigate(['/auth']);
       return false;
     }
   }

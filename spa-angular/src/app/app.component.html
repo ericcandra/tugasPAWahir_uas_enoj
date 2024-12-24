@@ -60,33 +60,40 @@
         </button>
         <div
           id="menu"
-          class="hidden lg:flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-9"
+          class="hidden lg:flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-4"
         >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/buku"
+          <a class="nav-link text-gray-800 hover:text-white-600" href="/buku"
             >Buku</a
           >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/anggota"
+          <a class="nav-link text-gray-800 hover:text-white-600" href="/anggota"
             >Anggota</a
           >
           <a
-            class="nav-link text-gray-800 hover:text-gray-600"
+            class="nav-link text-gray-800 hover:text-white-600"
             href="/peminjaman"
             >Peminjaman</a
           >
           <a
-            class="nav-link text-gray-800 hover:text-gray-600"
+            class="nav-link text-gray-800 hover:text-white-600"
             href="/pengembalian"
             >Pengembalian</a
           >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/denda"
+          <a class="nav-link text-gray-800 hover:text-white-600" href="/denda"
             >Denda</a
           >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/about"
-            >About</a
-          >
-          <a class="nav-link text-gray-800 hover:text-gray-600" href="/contact"
+          <a class="nav-link text-gray-800 hover:text-white-600" href="/contact"
             >Contact</a
           >
+          <a class="nav-link text-gray-800 hover:text-white-600" href="/about"
+            >About</a
+          >
+          <button
+            class="btn btn-danger"
+            *ngIf="isLoggedIn"
+            (click)="onLogout()"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </nav>
@@ -118,6 +125,7 @@
     ></script>
   </body>
 </html>
+
 <div class="container mt-3">
   <router-outlet></router-outlet>
 </div>
