@@ -18,7 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   styleUrls: ['./pengembalian.component.css'],
 })
 export class PengembalianComponent implements OnInit {
-  pengembalian: any[] = [];
+  pengembalian: any[] =  [];
   bukuList: any[] = [];
   anggotaList: any[] = [];
   dendaList: any[] = [];
@@ -109,29 +109,23 @@ export class PengembalianComponent implements OnInit {
       const token = localStorage.getItem('authToken'); // ambil token dari localstorage
       const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
-      this.http
-        .post(this.apiUrl, this.pengembalianForm.value, { headers })
-        .subscribe({
-          next: (response) => {
-            console.log('Pengembalian added successfully:', response);
-            this.getPengembalian();
-            this.pengembalianForm.reset();
-            this.isSubmitting = false;
-            const modalElement = document.getElementById(
-              'tambahPengembalianModal'
-            ) as HTMLElement;
-            if (modalElement) {
-              const modalInstance =
-                bootstrap.Modal.getInstance(modalElement) ||
-                new bootstrap.Modal(modalElement);
-              modalInstance.hide();
-            }
-          },
-          error: (err) => {
-            console.error('Error adding pengembalian:', err);
-            this.isSubmitting = false;
-          },
-        });
+      this.http.post(this.apiUrl, this.pengembalianForm.value, {headers}).subscribe({
+        next: (response) => {
+          console.log('Pengembalian added successfully:', response);
+          this.getPengembalian();
+          this.pengembalianForm.reset();
+          this.isSubmitting = false;
+          const modalElement = document.getElementById('tambahPengembalianModal') as HTMLElement;
+          if (modalElement) {
+            const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+            modalInstance.hide();
+          }
+        },
+        error: (err) => {
+          console.error('Error adding pengembalian:', err);
+          this.isSubmitting = false;
+        },
+      });
     }
   }
 
@@ -141,7 +135,7 @@ export class PengembalianComponent implements OnInit {
       const token = localStorage.getItem('authToken'); // ambil token dari localstorage
       const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
-      this.http.delete(`${this.apiUrl}/${id}`, { headers }).subscribe({
+      this.http.delete(`${this.apiUrl}/${id}`, {headers}).subscribe({
         next: () => {
           console.log(`Pengembalian with ID ${id} deleted successfully.`);
           this.getPengembalian();
@@ -187,30 +181,22 @@ export class PengembalianComponent implements OnInit {
       const token = localStorage.getItem('authToken'); // ambil token dari localstorage
       const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
-      this.http
-        .put(
-          `${this.apiUrl}/${this.editPengembalianId}`,
-          this.pengembalianForm.value,
-          { headers }
-        )
-        .subscribe({
-          next: (response) => {
-            console.log('Pengembalian updated successfully:', response);
-            this.getPengembalian();
-            this.isSubmitting = false;
-            const modalElement = document.getElementById(
-              'editPengembalianModal'
-            ) as HTMLElement;
-            if (modalElement) {
-              const modalInstance = bootstrap.Modal.getInstance(modalElement);
-              modalInstance?.hide();
-            }
-          },
-          error: (err) => {
-            console.error('Error updating pengembalian:', err);
-            this.isSubmitting = false;
-          },
-        });
+      this.http.put(`${this.apiUrl}/${this.editPengembalianId}`, this.pengembalianForm.value, {headers}).subscribe({
+        next: (response) => {
+          console.log('Pengembalian updated successfully:', response);
+          this.getPengembalian();
+          this.isSubmitting = false;
+          const modalElement = document.getElementById('editPengembalianModal') as HTMLElement;
+          if (modalElement) {
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance?.hide();
+          }
+        },
+        error: (err) => {
+          console.error('Error updating pengembalian:', err);
+          this.isSubmitting = false;
+        },
+      });
     }
   }
 }

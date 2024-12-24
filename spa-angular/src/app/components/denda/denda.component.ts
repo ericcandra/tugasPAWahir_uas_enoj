@@ -91,7 +91,11 @@ export class DendaComponent implements OnInit {
   addDenda(): void {
     if (this.dendaForm.valid) {
       this.isSubmitting = true;
-      this.http.post(this.apiDendaUrl, this.dendaForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.post(this.apiDendaUrl, this.dendaForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Denda added successfully:', response);
           this.getDenda();
@@ -114,7 +118,11 @@ export class DendaComponent implements OnInit {
   // Delete a denda by ID
   deleteDenda(id: string): void {
     if (confirm('Are you sure you want to delete this denda?')) {
-      this.http.delete(`${this.apiDendaUrl}/${id}`).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.delete(`${this.apiDendaUrl}/${id}`, {headers}).subscribe({
         next: () => {
           console.log(`Denda with ID ${id} deleted successfully.`);
           this.getDenda();
@@ -153,7 +161,11 @@ export class DendaComponent implements OnInit {
   updateDenda(): void {
     if (this.dendaForm.valid && this.editDendaId) {
       this.isSubmitting = true;
-      this.http.put(`${this.apiDendaUrl}/${this.editDendaId}`, this.dendaForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.put(`${this.apiDendaUrl}/${this.editDendaId}`, this.dendaForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Denda updated successfully:', response);
           this.getDenda();

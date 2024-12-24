@@ -64,10 +64,10 @@ export class BukuComponent implements OnInit {
     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
       // Konfirmasi penghapusan
 
-      // const token = localStorage.getItem('authToken'); // ambil token dari localstorage
-      // const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
-      this.http.delete(`${this.apiUrl}/${_id}`).subscribe({
+      this.http.delete(`${this.apiUrl}/${_id}`,{headers}).subscribe({
         //{ headers }
         next: () => {
           console.log(`Buku dengan id ${_id} berhasil dihapus`);
@@ -117,11 +117,11 @@ export class BukuComponent implements OnInit {
     if (this.bukuForm.valid) {
       this.isSubmitting = true;
 
-      // const token = localStorage.getItem('authToken'); // ambil token dari localstorage
-      // const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
       this.http
-        .put(`${this.apiUrl}/${this.editBukuId}`, this.bukuForm.value)
+        .put(`${this.apiUrl}/${this.editBukuId}`, this.bukuForm.value,{headers})
         .subscribe({
           //{ headers }
           next: (response) => {
@@ -150,10 +150,11 @@ export class BukuComponent implements OnInit {
     if (this.bukuForm.valid) {
       this.isSubmitting = true; // Set status submitting
 
-      // const token = localStorage.getItem('authToken'); // ambil token dari localstorage
-      // const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+      
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
-      this.http.post(this.apiUrl, this.bukuForm.value).subscribe({
+      this.http.post(this.apiUrl, this.bukuForm.value,{headers}).subscribe({
         // { headers }
         next: (response) => {
           console.log('Data berhasil ditambahkan:', response);

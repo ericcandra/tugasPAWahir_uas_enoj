@@ -70,7 +70,11 @@ export class PeminjamanComponent implements OnInit {
   addPeminjaman(): void {
     if (this.peminjamanForm.valid) {
       this.isSubmitting = true;
-      this.http.post(this.apiPeminjamanUrl, this.peminjamanForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.post(this.apiPeminjamanUrl, this.peminjamanForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Data berhasil ditambahkan:', response);
           this.getPeminjaman();
@@ -117,7 +121,11 @@ export class PeminjamanComponent implements OnInit {
   updatePeminjaman(): void {
     if (this.peminjamanForm.valid && this.editPeminjamanId) {
       this.isSubmitting = true;
-      this.http.put(`${this.apiPeminjamanUrl}/${this.editPeminjamanId}`, this.peminjamanForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.put(`${this.apiPeminjamanUrl}/${this.editPeminjamanId}`, this.peminjamanForm.value, {headers}).subscribe({
         next: () => {
           this.getPeminjaman();
           this.isSubmitting = false;
@@ -133,7 +141,11 @@ export class PeminjamanComponent implements OnInit {
 
   deletePeminjaman(_id: string): void {
     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-      this.http.delete(`${this.apiPeminjamanUrl}/${_id}`).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.delete(`${this.apiPeminjamanUrl}/${_id}`, {headers}).subscribe({
         next: () => {
           this.getPeminjaman();
         },
