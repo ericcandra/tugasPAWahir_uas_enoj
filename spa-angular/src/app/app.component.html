@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Team Enoj</a>
+  <a class="navbar-brand" href="#">Team ENOJ</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -13,54 +13,63 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
           class="nav-link"
-          href="/buku"
-          
+          routerLink="/buku"
+          routerLinkActive="active"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           Buku
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
           class="nav-link"
-          href="/peminjaman"
-          
+          routerLink="/peminjaman"
+          routerLinkActive="active"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           Peminjaman
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
           class="nav-link"
-          href="/anggota"
-          
+          routerLink="/anggota"
+          routerLinkActive="active"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           Anggota
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
           class="nav-link"
-          href="/denda"
-          
+          routerLink="/denda"
+          routerLinkActive="active"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           Denda
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
           class="nav-link"
-          href="/pengembalian"
-          
+          routerLink="/pengembalian"
+          routerLinkActive="active"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           Pengembalian
         </a>
       </li>
-      <!-- <li class="nav-item">
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a
-          *ngIf="!isLoggedIn"
           class="nav-link"
           routerLink="/auth"
           routerLinkActive="active"
@@ -70,9 +79,8 @@
           Login
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a
-          *ngIf="isLoggedIn"
           class="nav-link"
           (click)="onLogout()"
           data-bs-toggle="collapse"
@@ -80,7 +88,7 @@
         >
           Logout
         </a>
-      </li> -->
+      </li>
     </ul>
   </div>
 </nav>

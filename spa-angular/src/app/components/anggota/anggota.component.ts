@@ -77,7 +77,10 @@ export class AnggotaComponent implements OnInit {
     if (this.anggotaForm.valid) {
       this.isSubmitting = true;
 
-      this.http.post(this.apiAnggotaUrl, this.anggotaForm.value).subscribe({
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.post(this.apiAnggotaUrl, this.anggotaForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Anggota added successfully:', response);
           this.getAnggota(); // Refresh anggota data.
@@ -106,7 +109,11 @@ export class AnggotaComponent implements OnInit {
   // Delete an anggota by ID
   deleteAnggota(id: string): void {
     if (confirm('Are you sure you want to delete this anggota?')) {
-      this.http.delete(`${this.apiAnggotaUrl}/${id}`).subscribe({
+
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
+      this.http.delete(`${this.apiAnggotaUrl}/${id}`, {headers}).subscribe({
         next: () => {
           console.log(`Anggota with ID ${id} deleted successfully.`);
           this.getAnggota(); // Refresh anggota data.
@@ -152,10 +159,13 @@ export class AnggotaComponent implements OnInit {
     if (this.anggotaForm.valid && this.editAnggotaId) {
       this.isSubmitting = true;
 
+      const token = localStorage.getItem('authToken'); // ambil token dari localstorage
+      const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
+
       this.http
         .put(
           `${this.apiAnggotaUrl}/${this.editAnggotaId}`,
-          this.anggotaForm.value
+          this.anggotaForm.value, {headers}
         )
         .subscribe({
           next: (response) => {
