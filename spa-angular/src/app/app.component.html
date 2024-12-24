@@ -1,98 +1,123 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Team ENOJ</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/buku"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="bg-blue-500 text-white shadow-md sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-4">
+          <img
+            src="logoPerpus.png"
+            alt="Logo Perpustakaan"
+            class="h-12 rounded-full"
+          />
+          <a class="text-xl font-bold text-gray-800 ml-2" href="/home">
+            Perpustakaan<br />Digital ENOJ
+          </a>
+        </div>
+        <button
+          id="menu-button"
+          class="block lg:hidden text-gray-800 focus:outline-none"
         >
-          Buku
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/peminjaman"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+        <div
+          id="menu"
+          class="hidden lg:flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-9"
         >
-          Peminjaman
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/anggota"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          Anggota
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/denda"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          Denda
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/pengembalian"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          Pengembalian
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="!isLoggedIn">
-        <a
-          class="nav-link"
-          routerLink="/auth"
-          routerLinkActive="active"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          Login
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          (click)="onLogout()"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          Logout
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/buku"
+            >Buku</a
+          >
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/anggota"
+            >Anggota</a
+          >
+          <a
+            class="nav-link text-gray-800 hover:text-gray-600"
+            href="/peminjaman"
+            >Peminjaman</a
+          >
+          <a
+            class="nav-link text-gray-800 hover:text-gray-600"
+            href="/pengembalian"
+            >Pengembalian</a
+          >
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/denda"
+            >Denda</a
+          >
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/about"
+            >About</a
+          >
+          <a class="nav-link text-gray-800 hover:text-gray-600" href="/contact"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll(".nav-link");
+        const menuButton = document.getElementById("menu-button");
+        const menu = document.getElementById("menu");
+
+        // Highlight the current page
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === currentPath) {
+            link.classList.add("font-semibold");
+          }
+        });
+
+        // Toggle menu visibility on mobile
+        menuButton.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
 <div class="container mt-3">
   <router-outlet></router-outlet>
 </div>

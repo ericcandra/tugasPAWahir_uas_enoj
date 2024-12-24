@@ -132,7 +132,6 @@ export class PengembalianComponent implements OnInit {
   // Delete a denda by ID
   deletePengembalian(id: string): void {
     if (confirm('Are you sure you want to delete this pengembalian?')) {
-
       const token = localStorage.getItem('authToken'); // ambil token dari localstorage
       const headers = { Authorization: `Bearer ${token}` }; // tambah bearer token ke header
 
@@ -156,11 +155,15 @@ export class PengembalianComponent implements OnInit {
         this.pengembalianForm.patchValue({
           buku_id: data.buku_id,
           anggota_id: data.anggota_id,
-          denda_id: data.denda_id
+          denda_id: data.denda_id,
         });
-        const modalElement = document.getElementById('editPengembalianModal') as HTMLElement;
+        const modalElement = document.getElementById(
+          'editPengembalianModal'
+        ) as HTMLElement;
         if (modalElement) {
-          const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+          const modalInstance =
+            bootstrap.Modal.getInstance(modalElement) ||
+            new bootstrap.Modal(modalElement);
           modalInstance.show();
         }
       },
