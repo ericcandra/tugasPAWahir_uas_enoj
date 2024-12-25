@@ -14,7 +14,7 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 // Mengatur rute GET untuk mendapatkan semua data fakultas
 router.get("/", bukuController.getAllBuku);
 // Mengatur rute POST untuk membuat data fakultas baru
-router.post("/", bukuController.createBuku);
+router.post("/", authMiddleware, roleMiddleware("admin"), bukuController.createBuku);
 // Mengatur rute GET untuk mendapatkan data fakultas berdasarkan ID
 router.get("/:id", bukuController.getBukuById);
 // Mengatur rute PUT untuk memperbarui data fakultas berdasarkan ID
