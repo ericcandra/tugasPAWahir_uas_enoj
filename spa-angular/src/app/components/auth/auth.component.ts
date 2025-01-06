@@ -64,7 +64,7 @@ export class AuthComponent {
           console.log('Login berhasil:', response);
 
           // Mengarahkan ke halaman fakultas setelah login berhasil
-          window.location.href = '/';  // Menggunakan window.location.href untuk mereload halaman dan mengarahkan ke /fakultas
+          window.location.href = '/buku';  // Menggunakan window.location.href untuk mereload halaman dan mengarahkan ke /fakultas
           // this.router.navigate(['/fakultas']);  // Alternatif menggunakan Angular router (jika tidak menggunakan window.location.href)
         } else {
           // Jika tidak ada token dalam response, tampilkan pesan error
