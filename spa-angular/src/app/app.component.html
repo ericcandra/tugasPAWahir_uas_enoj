@@ -25,7 +25,139 @@
     </style>
   </head>
   <body>
-    <nav class="bg-blue-500 text-white shadow-md sticky top-0 z-50">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="flex items-center space-x-4">
+        <img
+          src="logoPerpus.png"
+          alt="Logo Perpustakaan"
+          class="h-12 rounded-full"
+        />
+        <a class="text-xl font-bold text-gray-800 ml-2" href="/home">
+          Perpustakaan<br />Digital ENOJ
+        </a>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/about"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/buku"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Buku
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/anggota"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Anggota
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/peminjaman"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Peminjaman
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/pengembalian"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Pengembalian
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/denda"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Denda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/contact"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Contact
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              *ngIf="!isLoggedIn"
+              class="nav-link"
+              routerLink="/auth"
+              routerLinkActive="active"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              *ngIf="isLoggedIn"
+              class="nav-link"
+              (click)="onLogout()"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <div class="container mt-3">
+      <router-outlet></router-outlet>
+    </div>
+    
+    <!-- <nav class="bg-blue-500 text-white shadow-md sticky top-0 z-50">
       <div
         class="container mx-auto px-4 py-4 flex justify-between items-center"
       >
@@ -129,4 +261,4 @@
 
 <div class="container mt-3">
   <router-outlet></router-outlet>
-</div>
+</div> -->
