@@ -4,7 +4,7 @@ const Peminjaman = require("../models/peminjaman");
 const getAllPeminjaman = async (req, res) =>{
     try {
         // mengambil semua buku dari database
-        const peminjaman = await Peminjaman.find().populate("buku_id", "nama penulis tahun jenis");
+        const peminjaman = await Peminjaman.find().populate("buku_id", "nama penulis tahun jenis").populate("anggota_id", "nama");
         // mengirim respon dengan status 200 dan data buku
         res.status(200).json(peminjaman);
     }catch (err) {
@@ -35,6 +35,7 @@ const createPeminjaman = async (req, res) => {
         tanggalKembali: req.body.tanggalKembali,
         batasPinjam: req.body.batasPinjam,
         buku_id: req.body.buku_id,
+        anggota_id: req.body.anggota_id,
     });
 
     try {
@@ -49,7 +50,7 @@ const createPeminjaman = async (req, res) => {
 };
 
 const updatePeminjaman = async (req, res) => {
-    const { tanggalPinjam, tanggalKembali, batasPinjam, buku_id,  } = req.body;
+    const { tanggalPinjam, tanggalKembali, batasPinjam, buku_id, anggota_id  } = req.body;
     try {
         const peminjaman = await Peminjaman.findById(req.params.id); // Mencari mahasiswa berdasarkan ID
         if (!peminjaman)
@@ -69,6 +70,7 @@ const updatePeminjaman = async (req, res) => {
         peminjaman.tanggalKembali = tanggalKembali ?? peminjaman.tanggalKembali;
         peminjaman.batasPinjam = batasPinjam ?? peminjaman.batasPinjam;
         peminjaman.buku_id = buku_id ?? peminjaman.buku_id;
+        peminjaman.anggota_id = anggota_id ?? peminjaman.anggota_id;
         // mahasiswa.npm = npm ?? mahasiswa.npm;
         // mahasiswa.nama = nama ?? mahasiswa.nama;
         // mahasiswa.prodi_id = prodi_id ?? mahasiswa.prodi_id;

@@ -80,6 +80,18 @@
                 </option>
               </select>
             </div>
+            <div class="mb-3">
+              <label for="anggota_id" class="form-label">Nama Anggota</label>
+              <select
+                id="anggota_id"
+                class="form-select"
+                formControlName="anggota_id"
+              >
+                <option *ngFor="let item of anggota" [value]="item._id">
+                  {{ item.nama }}
+                </option>
+              </select>
+            </div>
             <button
               type="submit"
               class="btn btn-primary"
@@ -102,6 +114,7 @@
           <th>Tanggal Kembalian</th>
           <th>Batas Pinjaman</th>
           <th>Nama Buku</th>
+          <th>Nama Anggota</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -118,6 +131,7 @@
           <td>{{ item.tanggalKembali }}</td>
           <td>{{ item.batasPinjam }}</td>
           <td>{{ item.buku_id?.nama }}</td>
+          <td>{{ item.anggota_id?.nama}}</td>
           <td>
             <button
               type="button"
@@ -205,6 +219,20 @@
                 </option>
               </select>
             </div>
+
+            <div class="mb-3">
+              <label for="anggota_id" class="form-label">Nama Anggota</label>
+              <select
+                id="anggota_id"
+                class="form-select"
+                formControlName="anggota_id"
+              >
+                <option *ngFor="let item of anggota" [value]="item._id">
+                  {{ item.nama }}
+                </option>
+              </select>
+            </div>
+
             <button
               type="submit"
               class="btn btn-primary"

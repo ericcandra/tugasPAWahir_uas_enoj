@@ -15,6 +15,7 @@ import * as bootstrap from 'bootstrap';
 export class PeminjamanComponent implements OnInit {
   peminjaman: any[] = [];
   buku: any[] = [];
+  anggota: any[] = [];
   currentPage = 1;
   itemsPerPage = 5;
   isLoading = true;
@@ -23,6 +24,7 @@ export class PeminjamanComponent implements OnInit {
 
   apiPeminjamanUrl = 'https://tugas-pa-wahir-uas-enoj.vercel.app/api/peminjaman';
   apiBukuUrl = 'https://tugas-pa-wahir-uas-enoj.vercel.app/api/buku';
+  apiAnggotaUrl = 'https://tugas-pa-wahir-uas-enoj.vercel.app/api/anggota';
 
   peminjamanForm: FormGroup;
   private http = inject(HttpClient);
@@ -34,12 +36,14 @@ export class PeminjamanComponent implements OnInit {
       tanggalKembali: [''],
       batasPinjam: [''],
       buku_id: [''],
+      anggota_id: [''],
     });
   }
 
   ngOnInit(): void {
     this.getPeminjaman();
     this.getBuku();
+    this.getAnggota();
   }
 
   getPeminjaman(): void {
@@ -63,6 +67,17 @@ export class PeminjamanComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching buku data:', err);
+      },
+    });
+  }
+
+  getAnggota(): void {
+    this.http.get<any[]>(this.apiAnggotaUrl).subscribe({
+      next: (data) => {
+        this.anggota = data;
+      },
+      error: (err) => {
+        console.error('Error fetching anggota data:', err);
       },
     });
   }

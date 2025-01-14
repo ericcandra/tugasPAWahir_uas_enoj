@@ -26,6 +26,11 @@ const peminjamanSchema = new mongoose.Schema({
         ref: "Buku",
         required: true,
     },
+    anggota_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Anggota",
+        required: true,
+    },
     // field untuk menyimpan tanggal pembuatan data fakultas
     createdAt: {
         type: Date,
